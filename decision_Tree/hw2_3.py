@@ -14,13 +14,13 @@ def main():
     # load the csv file and save it in pandas dataframe, column name is none, give new column names
     colnames_car = ["buying", "maint", "doors", "persons", "lug_boot", "safety", "label"]
     # class_list_car = ["unacc", "acc", "good", "vgood"]
-    train_car = pd.read_csv("../homework_2/car/train.csv", names=colnames_car, header=None, index_col=False)
-    test_car = pd.read_csv("../homework_2/car/test.csv", names=colnames_car, header=None, index_col=False)
+    train_car = pd.read_csv("car/train.csv", names=colnames_car, header=None, index_col=False)
+    test_car = pd.read_csv("car/test.csv", names=colnames_car, header=None, index_col=False)
     colnames_bank = ["age", "job", "marital", "education", "default", "balance", "housing", "loan", "contact", "day",
                 "month", "duration", "campaign", "pdays", "previous", "poutcome", "y"]
     # class_list = ["unacc", "acc", "good", "vgood"]
-    train_bank = pd.read_csv("../homework_2/bank/train.csv", names=colnames_bank, header=None, index_col=False)
-    test_bank = pd.read_csv("../homework_2/bank/test.csv", names=colnames_bank, header=None, index_col=False)
+    train_bank = pd.read_csv("bank/train.csv", names=colnames_bank, header=None, index_col=False)
+    test_bank = pd.read_csv("bank/test.csv", names=colnames_bank, header=None, index_col=False)
     # check the type of the columns in the csv file
     #print(train.dtypes)
     # select the integer columns in the csv file

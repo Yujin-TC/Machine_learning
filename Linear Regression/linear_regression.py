@@ -7,11 +7,10 @@ Max_iter = 10000
 Learning_rate_list = [0.5, 0.25, 0.125, 0.0625, 0.03125, 0.015625, 0.0078125]
 
 def main():
-    data_folder = f"./data/concrete"
     
     # Get train data and test data
-    train_data = pd.read_csv(data_folder + "concrete/train.csv", header = None, sep = ",")
-    test_data = pd.read_csv(data_folder + "concrete/test.csv", header = None, sep = ",")
+    train_data = pd.read_csv("concrete/train.csv", header = None, sep = ",")
+    test_data = pd.read_csv("concrete/test.csv", header = None, sep = ",")
     
     # Get features and ouput
     X_train = train_data.iloc[:, :-1].values

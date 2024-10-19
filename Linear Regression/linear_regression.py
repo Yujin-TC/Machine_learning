@@ -10,8 +10,8 @@ def main():
     data_folder = f"./data/concrete"
     
     # Get train data and test data
-    train_data = pd.read_csv(data_folder + "/train.csv", header = None, sep = ",")
-    test_data = pd.read_csv(data_folder + "/test.csv", header = None, sep = ",")
+    train_data = pd.read_csv(data_folder + "concrete/train.csv", header = None, sep = ",")
+    test_data = pd.read_csv(data_folder + "concrete/test.csv", header = None, sep = ",")
     
     # Get features and ouput
     X_train = train_data.iloc[:, :-1].values

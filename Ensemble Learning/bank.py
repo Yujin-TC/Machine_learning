@@ -213,7 +213,7 @@ for i in range(iteration):
     single_tree_predicts.append(simple_test_predict)
     pd.DataFrame(rf_tree_predicts).to_csv("rf_tree_predicts.csv", index=False)
     pd.DataFrame(single_tree_predicts).to_csv("single_rf_tree_predicts.csv", index=False)
-    print("it takes:", (time.time()-end_time-end_time)/60, " minutes to predict")
+    print("it takes:", (time.time()-end_time)/60, " minutes to predict")
 
 
 rf_tree_predicts_df = pd.DataFrame(rf_tree_predicts)

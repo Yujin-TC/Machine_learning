@@ -33,7 +33,7 @@ class SVM:
                 w = w - lr * g
         return w
 
-    def objective(self, alpha, x, y):
+    def object(self, alpha, x, y):
         l = 0
         l = l - np.sum(alpha)
         ayx = np.multiply(np.multiply(np.reshape(alpha, (-1, 1)), np.reshape(y, (-1, 1))), x)

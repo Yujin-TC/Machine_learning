@@ -49,7 +49,7 @@ class SVM:
         bounds = [(0, self.C)] * num_sample
         cons = ({'type': 'eq', 'fun': lambda alpha: self.constrain(alpha, y)})
         alpha0 = np.zeros(num_sample)
-        res = opt.minimize(lambda alpha: self.objective(alpha, x, y), alpha0, method='SLSQP', bounds=bounds, constraints=cons,
+        res = opt.minimize(lambda alpha: self.object(alpha, x, y), alpha0, method='SLSQP', bounds=bounds, constraints=cons,
                            options={'disp': False})
 
         w = np.sum(np.multiply(np.multiply(np.reshape(res.x, (-1, 1)), np.reshape(y, (-1, 1))), x), axis=0)

@@ -34,14 +34,14 @@ for C in C_set:
     pred = np.matmul(train_x, w)
     pred[pred > 0] = 1
     pred[pred <= 0] = -1
-    train_err = np.sum(np.abs(pred - np.reshape(train_y, (-1, 1)))) / 2 / train_y.shape[0]
+    train_error = np.sum(np.abs(pred - np.reshape(train_y, (-1, 1)))) / 2 / train_y.shape[0]
 
     pred = np.matmul(test_x, w)
     pred[pred > 0] = 1
     pred[pred <= 0] = -1
 
-    test_err = np.sum(np.abs(pred - np.reshape(test_y, (-1, 1)))) / 2 / test_y.shape[0]
-    print('train_error: ', train_err, ' test_error: ', test_err)
+    test_error = np.sum(np.abs(pred - np.reshape(test_y, (-1, 1)))) / 2 / test_y.shape[0]
+    print('train_error: ', train_error, ' test_error: ', test_error)
     w = np.reshape(w, (1, -1))
 
 # dual form
@@ -51,14 +51,14 @@ for C in C_set:
     pred = np.matmul(train_x, w)
     pred[pred > 0] = 1
     pred[pred <= 0] = -1
-    train_err = np.sum(np.abs(pred - np.reshape(train_y, (-1, 1)))) / 2 / train_y.shape[0]
+    train_error = np.sum(np.abs(pred - np.reshape(train_y, (-1, 1)))) / 2 / train_y.shape[0]
 
     pred = np.matmul(test_x, w)
     pred[pred > 0] = 1
     pred[pred <= 0] = -1
 
-    test_err = np.sum(np.abs(pred - np.reshape(test_y, (-1, 1)))) / 2 / test_y.shape[0]
-    print('Dual SVM train_error: ', train_err, ' test_error: ', test_err)
+    test_error = np.sum(np.abs(pred - np.reshape(test_y, (-1, 1)))) / 2 / test_y.shape[0]
+    print('Dual SVM train_error: ', train_error, ' test_error: ', test_error)
 
 # gaussian kernel
     c = 0
@@ -70,16 +70,16 @@ for C in C_set:
         # train
         y = svm.predict_gaussian_kernel(alpha, train_x[:, [x for x in range(num_col - 1)]], train_y,
                                         train_x[:, [x for x in range(num_col - 1)]])
-        train_err = np.sum(np.abs(y - np.reshape(train_y, (-1, 1)))) / 2 / train_y.shape[0]
+        train_error = np.sum(np.abs(y - np.reshape(train_y, (-1, 1)))) / 2 / train_y.shape[0]
 
         # test
         y = svm.predict_gaussian_kernel(alpha, train_x[:, [x for x in range(num_col - 1)]], train_y,
                                         test_x[:, [x for x in range(num_col - 1)]])
-        test_err = np.sum(np.abs(y - np.reshape(test_y, (-1, 1)))) / 2 / test_y.shape[0]
-        print('nonlinear SVM train_error: ', train_err, ' test_error: ', test_err)
+        test_error = np.sum(np.abs(y - np.reshape(test_y, (-1, 1)))) / 2 / test_y.shape[0]
+        print('nonlinear SVM train_error: ', train_error, ' test_error: ', test_error)
 
         if c > 0:
-            intersect = len(np.intersect1d(idx, old_idx))
-            print('repeat is: ', intersect)
+            repeat = len(np.intersect1d(idx, old_idx))
+            print('repeat is: ', repeat)
         c = c + 1
         old_idx = idx

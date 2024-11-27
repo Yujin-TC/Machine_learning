@@ -26,11 +26,12 @@ C_set = np.array([100, 500, 700])
 C_set = C_set / 873
 gamma_set = np.array([0.01, 0.1, 0.5, 1, 5, 100])
 svm = SVM.SVM()
+
 for C in C_set:
     svm.C
     w = svm.train_predict(train_x, train_y)
     w = np.reshape(w, (5, 1))
-
+#Recover the feature
     pred = np.matmul(train_x, w)
     pred[pred > 0] = 1
     pred[pred <= 0] = -1
@@ -43,23 +44,7 @@ for C in C_set:
     test_error = np.sum(np.abs(pred - np.reshape(test_y, (-1, 1)))) / 2 / test_y.shape[0]
     print('train_error: ', train_error, ' test_error: ', test_error)
     w = np.reshape(w, (1, -1))
-
-# dual form
-    w = svm.train_dual(train_x[:, [x for x in range(num_col - 1)]], train_y)
-    w = np.reshape(w, (5, 1))
-
-    pred = np.matmul(train_x, w)
-    pred[pred > 0] = 1
-    pred[pred <= 0] = -1
-    train_error = np.sum(np.abs(pred - np.reshape(train_y, (-1, 1)))) / 2 / train_y.shape[0]
-
-    pred = np.matmul(test_x, w)
-    pred[pred > 0] = 1
-    pred[pred <= 0] = -1
-
-    test_error = np.sum(np.abs(pred - np.reshape(test_y, (-1, 1)))) / 2 / test_y.shape[0]
-    print('Dual SVM train_error: ', train_error, ' test_error: ', test_error)
-
+    
 # gaussian kernel
     c = 0
     for gamma in gamma_set:
@@ -83,3 +68,20 @@ for C in C_set:
             print('repeat is: ', repeat)
         c = c + 1
         old_idx = idx
+
+# dual form
+    w = svm.train_dual(train_x[:, [x for x in range(num_col - 1)]], train_y)
+    w = np.reshape(w, (5, 1))
+
+    pred = np.matmul(train_x, w)
+    pred[pred > 0] = 1
+    pred[pred <= 0] = -1
+    train_error = np.sum(np.abs(pred - np.reshape(train_y, (-1, 1)))) / 2 / train_y.shape[0]
+
+    pred = np.matmul(test_x, w)
+    pred[pred > 0] = 1
+    pred[pred <= 0] = -1
+
+    test_error = np.sum(np.abs(pred - np.reshape(test_y, (-1, 1)))) / 2 / test_y.shape[0]
+    print('Dual SVM train_error: ', train_error, ' test_error: ', test_error)
+
